@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <PackageVersion>0.2.0</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <PackageId>Incremental.Common.Sourcing</PackageId>
         <Title>Common Sourcing Resources</Title>
         <Authors>Lucas Maximiliano Marino</Authors>
