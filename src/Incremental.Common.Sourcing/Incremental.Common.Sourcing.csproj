@@ -1,26 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
     
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <PackageVersion>1.0.0</PackageVersion>
+        <PackageVersion>1.1.0</PackageVersion>
         <PackageId>Incremental.Common.Sourcing</PackageId>
         <Title>Common Sourcing Resources</Title>
         <Authors>Lucas Maximiliano Marino</Authors>
         <PackageProjectUrl>https://github.com/incrementalspace/package.sourcing</PackageProjectUrl>
         <RepositoryUrl>https://github.com/incrementalspace/package.sourcing</RepositoryUrl>
         <Copyright>Copyright © Lucas Maximiliano Marino 2020</Copyright>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="9.2.2" />
+        <PackageReference Include="FluentValidation" Version="9.3.0" />
         <PackageReference Include="MediatR" Version="9.0.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
     </ItemGroup>
 
 </Project>

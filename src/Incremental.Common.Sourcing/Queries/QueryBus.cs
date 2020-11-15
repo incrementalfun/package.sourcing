@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
@@ -20,9 +21,9 @@ namespace Incremental.Common.Sourcing.Queries
         }
 
         /// <inheritdoc />
-        public Task<TResponse> Send<TResponse>(IQuery<TResponse> query)
+        public Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)
         {
-            return _sender.Send(query);
+            return _sender.Send(query, cancellationToken);
         }
     }
 }

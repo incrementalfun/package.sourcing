@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Incremental.Common.Sourcing.Queries
@@ -11,8 +12,9 @@ namespace Incremental.Common.Sourcing.Queries
         /// Sends a query and returns a TResponse.
         /// </summary>
         /// <param name="query"></param>
+        /// <param name="cancellationToken"></param>
         /// <typeparam name="TResponse"></typeparam>
         /// <returns></returns>
-        Task<TResponse> Send<TResponse>(IQuery<TResponse> query);
+        Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default);
     }
 }

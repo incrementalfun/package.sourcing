@@ -20,7 +20,7 @@ namespace Incremental.Common.Sourcing
         /// <param name="services"></param>
         /// <param name="assemblies"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSourcing(this IServiceCollection services, Assembly[] assemblies)
+        public static IServiceCollection AddSourcing(this IServiceCollection services, params Assembly[] assemblies)
         {
             services.AddMediatR(assemblies);
             
