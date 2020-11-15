@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using Incremental.Common.Sourcing.Commands.Contract;
+using Incremental.Common.Sourcing.Events.Contract;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,9 +14,10 @@ namespace Incremental.Common.Sourcing.Pipeline
     /// Pipeline for validating commands.
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
-    public class CommandValidationPipeline<TRequest> : IPipelineBehavior<TRequest, Unit> where TRequest : ICommand
+    /// <typeparam name="TResponse"></typeparam>
+    public class CommandValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, Unit> where TRequest : ICommand
     {
-        private readonly ILogger<CommandValidationPipeline<TRequest>> _logger;
+        private readonly ILogger<CommandValidationPipeline<TRequest, TResponse>> _logger;
         private readonly IServiceProvider _serviceProvider;
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace Incremental.Common.Sourcing.Pipeline
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="serviceProvider"></param>
-        public CommandValidationPipeline(ILogger<CommandValidationPipeline<TRequest>> logger,
+        public CommandValidationPipeline(ILogger<CommandValidationPipeline<TRequest, TResponse>> logger,
             IServiceProvider serviceProvider)
         {
             _logger = logger;
@@ -41,13 +43,13 @@ namespace Incremental.Common.Sourcing.Pipeline
         {
             var validator = _serviceProvider.GetService<IValidator<TRequest>>();
 
-            if (validator != null)
+            if (validator is not null)
             {
                 var result = await validator.ValidateAsync(request, cancellationToken);
 
-                _logger.LogInformation("Validation of {Request}: {ValidationResult}", nameof(request), result.IsValid);
+                _logger.LogInformation("Result of validating {Request}: {ValidationResult}", typeof(TRequest).Name, result.IsValid);
 
-                if (!result.IsValid)
+                if (result.IsValid is false)
                 {
                     return Unit.Value;
                 }

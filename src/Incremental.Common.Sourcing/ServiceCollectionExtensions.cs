@@ -3,6 +3,7 @@ using Incremental.Common.Sourcing.Commands;
 using Incremental.Common.Sourcing.Commands.Contract;
 using Incremental.Common.Sourcing.Events;
 using Incremental.Common.Sourcing.Events.Contract;
+using Incremental.Common.Sourcing.Pipeline;
 using Incremental.Common.Sourcing.Queries;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,8 @@ namespace Incremental.Common.Sourcing
             services.AddScoped<IQueryBus, QueryBus>();
             services.AddScoped<IEventBus, EventBus>();
             
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationPipeline<,>));
+
             return services;
         }
     }
