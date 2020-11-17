@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Incremental.Common.Sourcing.Commands.Contract;
 using MediatR;
@@ -22,9 +23,9 @@ namespace Incremental.Common.Sourcing.Commands
 
 
         /// <inheritdoc />
-        public Task Send<TCommand>(TCommand command) where TCommand : ICommand
+        public Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : ICommand
         {
-            return _sender.Send(command);
+            return _sender.Send(command, cancellationToken);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Incremental.Common.Sourcing.Commands.Contract
@@ -11,8 +12,9 @@ namespace Incremental.Common.Sourcing.Commands.Contract
         /// Sends a command.
         /// </summary>
         /// <param name="command"></param>
+        /// <param name="cancellationToken"></param>
         /// <typeparam name="TCommand"></typeparam>
         /// <returns></returns>
-        Task Send<TCommand>(TCommand command) where TCommand : ICommand;
+        Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : ICommand;
     }
 }
