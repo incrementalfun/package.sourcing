@@ -53,14 +53,17 @@ namespace Incremental.Common.Sourcing.Pipeline
             finally
             {
                 stopwatch.Stop();
+                
                 if (stopwatch.Elapsed.TotalSeconds >= 30)
                 {
                     _logger.LogWarning("{RequestName}:{RequestId} ended in {ExecutionTime}", 
                         requestName, requestId, $"{stopwatch.ElapsedMilliseconds}ms");
                 }
-                
-                _logger.LogInformation("{RequestName}:{RequestId} ended in {ExecutionTime}", 
-                    requestName, requestId, $"{stopwatch.ElapsedMilliseconds}ms");
+                else
+                {
+                    _logger.LogInformation("{RequestName}:{RequestId} ended in {ExecutionTime}",
+                        requestName, requestId, $"{stopwatch.ElapsedMilliseconds}ms");
+                }
             }
 
             return response;
