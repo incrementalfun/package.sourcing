@@ -23,12 +23,15 @@ namespace Incremental.Common.Sourcing
         /// <returns></returns>
         public static IServiceCollection AddSourcing(this IServiceCollection services, params Assembly[] assemblies)
         {
+            services.AddScoped<Watcher, Watcher>();
+            
             services.AddMediatR(assemblies);
             
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<IQueryBus, QueryBus>();
             services.AddScoped<IEventBus, EventBus>();
-            
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipeline<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationPipeline<,>));
 
             return services;
