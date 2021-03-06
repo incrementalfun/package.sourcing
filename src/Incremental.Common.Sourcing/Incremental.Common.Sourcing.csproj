@@ -2,16 +2,13 @@
     
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageVersion>1.3.2</PackageVersion>
-        <PackageId>Incremental.Common.Sourcing</PackageId>
-        <Title>Common Sourcing Resources</Title>
+        <Title>Incremental.Common.Sourcing</Title>
+        <Description>Common resources for handling commands, queries, events, and more.</Description>
         <Authors>Lucas Maximiliano Marino</Authors>
         <PackageProjectUrl>https://github.com/incrementalfun/package.sourcing</PackageProjectUrl>
         <RepositoryUrl>https://github.com/incrementalfun/package.sourcing</RepositoryUrl>
         <Copyright>Copyright © Lucas Maximiliano Marino 2021</Copyright>
-        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
