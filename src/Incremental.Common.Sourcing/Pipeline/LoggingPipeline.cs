@@ -12,10 +12,10 @@ namespace Incremental.Common.Sourcing.Pipeline
 {
     internal class LoggingPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ILogger<TRequest> _logger;
+        private readonly ILogger<LoggingPipeline<TRequest, TResponse>> _logger;
         private readonly Watcher _watcher;
 
-        public LoggingPipeline(ILogger<TRequest> logger, Watcher watcher)
+        public LoggingPipeline(ILogger<LoggingPipeline<TRequest, TResponse>> logger, Watcher watcher)
         {
             _logger = logger;
             _watcher = watcher;
@@ -36,7 +36,7 @@ namespace Incremental.Common.Sourcing.Pipeline
             {
                 try
                 {
-                    if (request.GetType().GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQuery<>)))
+                    if (request.GetType().GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequest)))
                     {
                         _logger.LogInformation("{RequestName}:{RequestId} has properties {@Properties}", 
                             requestName, requestId, JsonSerializer.Serialize(request));
