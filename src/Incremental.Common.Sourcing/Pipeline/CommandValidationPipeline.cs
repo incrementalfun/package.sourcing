@@ -26,7 +26,6 @@ namespace Incremental.Common.Sourcing.Pipeline
 
         public async Task<Unit> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<Unit> next)
         {
-            var requestName = request.GetType().FullName;
             var requestId = _watcher.Get(request);
             
             var validator = _serviceProvider.GetService<IValidator<TRequest>>();
@@ -36,7 +35,7 @@ namespace Incremental.Common.Sourcing.Pipeline
                 var result = await validator.ValidateAsync(request, cancellationToken);
 
                 _logger.LogInformation("{RequestName}:{RequestId} validation result is {ValidationResult}", 
-                    requestName, requestId, result.IsValid);
+                    request.GetType().FullName, requestId, result.IsValid);
 
                 if (result.IsValid is false)
                 {
