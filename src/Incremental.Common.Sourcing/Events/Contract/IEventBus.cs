@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace Incremental.Common.Sourcing.Events.Contract
 {
@@ -10,9 +11,8 @@ namespace Incremental.Common.Sourcing.Events.Contract
         /// <summary>
         /// Publishes an event.
         /// </summary>
-        /// <param name="events"></param>
         /// <typeparam name="TEvent"></typeparam>
         /// <returns></returns>
-        Task Publish<TEvent>(params TEvent[] events) where TEvent : IEvent;
+        Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent;
     }
 }
