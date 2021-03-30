@@ -27,9 +27,9 @@ namespace Incremental.Common.Sourcing
             
             services.AddMediatR(assemblies);
             
-            services.AddScoped<ICommandBus, CommandBus>();
-            services.AddScoped<IQueryBus, QueryBus>();
-            services.AddScoped<IEventBus, EventBus>();
+            services.AddTransient<ICommandBus, CommandBus>();
+            services.AddTransient<IQueryBus, QueryBus>();
+            services.AddTransient<IEventBus, EventBus>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipeline<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationPipeline<,>));
