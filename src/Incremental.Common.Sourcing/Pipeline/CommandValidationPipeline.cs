@@ -13,23 +13,25 @@ namespace Incremental.Common.Sourcing.Pipeline
     internal class CommandValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, Unit> where TRequest : ICommand
     {
         private readonly ILogger<CommandValidationPipeline<TRequest, TResponse>> _logger;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IServiceScopeFactory _scopeFactory;
         private readonly Watcher _watcher;
 
         public CommandValidationPipeline(ILogger<CommandValidationPipeline<TRequest, TResponse>> logger,
-            IServiceProvider serviceProvider, Watcher watcher)
+            IServiceScopeFactory scopeFactory, Watcher watcher)
         {
             _logger = logger;
-            _serviceProvider = serviceProvider;
+            _scopeFactory = scopeFactory;
             _watcher = watcher;
         }
 
         public async Task<Unit> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<Unit> next)
         {
-            var requestId = _watcher.Get(request);
-            
-            var validator = _serviceProvider.GetService<IValidator<TRequest>>();
+            using var scope = _scopeFactory.CreateScope();
 
+            var requestId = _watcher.Get(request);
+
+            var validator = scope.ServiceProvider.GetRequiredService<IValidator<TRequest>>();
+            
             if (validator is not null)
             {
                 var result = await validator.ValidateAsync(request, cancellationToken);
