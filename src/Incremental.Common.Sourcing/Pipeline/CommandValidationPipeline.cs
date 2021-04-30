@@ -30,7 +30,7 @@ namespace Incremental.Common.Sourcing.Pipeline
 
             var requestId = _watcher.Get(request);
 
-            var validator = scope.ServiceProvider.GetRequiredService<IValidator<TRequest>>();
+            var validator = scope.ServiceProvider.GetService<IValidator<TRequest>>();
             
             if (validator is not null)
             {
