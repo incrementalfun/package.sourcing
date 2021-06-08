@@ -1,7 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Incremental.Common.Sourcing.Events.Contract;
-using MassTransit;
 using MediatR;
 
 namespace Incremental.Common.Sourcing.Events
@@ -12,17 +11,14 @@ namespace Incremental.Common.Sourcing.Events
     public class EventBus : IEventBus
     {
         private readonly IPublisher _publisher;
-        private readonly IBus _bus;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="publisher"></param>
-        /// <param name="bus"></param>
-        public EventBus(IPublisher publisher, IBus bus)
+        public EventBus(IPublisher publisher)
         {
             _publisher = publisher;
-            _bus = bus;
         }
 
         /// <inheritdoc />
@@ -32,8 +28,6 @@ namespace Incremental.Common.Sourcing.Events
             {
                 await _publisher.Publish(@event, cancellationToken);
             }
-
-            await _bus.Publish(@event, cancellationToken);
         }
     }
 }
