@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Incremental.Common.Sourcing.Commands.Contract;
+using Incremental.Common.Sourcing.Abstractions.Commands;
 using MediatR;
 
 namespace Incremental.Common.Sourcing.Commands

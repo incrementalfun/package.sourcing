@@ -1,22 +1,19 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using Incremental.Common.Sourcing.Commands.Contract;
-using Incremental.Common.Sourcing.Events.Contract;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Incremental.Common.Sourcing.Pipeline
 {
-    internal class CommandValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, Unit> where TRequest : ICommand
+    internal class ValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, Unit> where TRequest : IRequest
     {
-        private readonly ILogger<CommandValidationPipeline<TRequest, TResponse>> _logger;
+        private readonly ILogger<ValidationPipeline<TRequest, TResponse>> _logger;
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly Watcher _watcher;
 
-        public CommandValidationPipeline(ILogger<CommandValidationPipeline<TRequest, TResponse>> logger,
+        public ValidationPipeline(ILogger<ValidationPipeline<TRequest, TResponse>> logger,
             IServiceScopeFactory scopeFactory, Watcher watcher)
         {
             _logger = logger;
@@ -36,7 +33,7 @@ namespace Incremental.Common.Sourcing.Pipeline
             {
                 var result = await validator.ValidateAsync(request, cancellationToken);
 
-                _logger.LogInformation("{RequestName}:{RequestId} validation result is {ValidationResult}", 
+                _logger.LogInformation("Request {RequestName}:{RequestId} validation result is {ValidationResult}", 
                     request.GetType().FullName, requestId, result.IsValid);
 
                 if (result.IsValid is false)

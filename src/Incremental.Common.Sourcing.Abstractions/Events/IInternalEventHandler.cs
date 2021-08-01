@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Incremental.Common.Sourcing.Events.Contract
+namespace Incremental.Common.Sourcing.Abstractions.Events
 {
     /// <summary>
     /// Internal Event handler.

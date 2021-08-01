@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Incremental.Common.Sourcing.Abstractions.Queries;
 using MediatR;
 
 namespace Incremental.Common.Sourcing.Queries

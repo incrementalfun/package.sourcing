@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Incremental.Common.Sourcing.Queries
+namespace Incremental.Common.Sourcing.Abstractions.Queries
 {
     /// <summary>
     /// Query.
