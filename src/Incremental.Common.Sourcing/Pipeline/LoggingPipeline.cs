@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Incremental.Common.Sourcing.Queries;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -27,7 +26,7 @@ namespace Incremental.Common.Sourcing.Pipeline
             var requestName = request.GetType().FullName;
             var requestId = _watcher.Add(request);
 
-            _logger.LogInformation("{RequestName}:{RequestId} started", 
+            _logger.LogInformation("Request {RequestName}:{RequestId} started", 
                 requestName, requestId);
 
             TResponse response;
@@ -56,12 +55,12 @@ namespace Incremental.Common.Sourcing.Pipeline
                 
                 if (stopwatch.Elapsed.TotalSeconds >= 30)
                 {
-                    _logger.LogWarning("{RequestName}:{RequestId} ended in {ExecutionTime}", 
+                    _logger.LogWarning("Request {RequestName}:{RequestId} ended in {ExecutionTime}", 
                         requestName, requestId, $"{stopwatch.ElapsedMilliseconds}ms");
                 }
                 else
                 {
-                    _logger.LogInformation("{RequestName}:{RequestId} ended in {ExecutionTime}",
+                    _logger.LogInformation("Request {RequestName}:{RequestId} ended in {ExecutionTime}",
                         requestName, requestId, $"{stopwatch.ElapsedMilliseconds}ms");
                 }
             }
