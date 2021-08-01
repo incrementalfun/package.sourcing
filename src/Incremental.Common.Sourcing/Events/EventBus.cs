@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Incremental.Common.Sourcing.Events.Contract;
+using Incremental.Common.Sourcing.Abstractions.Events;
 using MediatR;
 
 namespace Incremental.Common.Sourcing.Events

@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Incremental.Common.Sourcing.Queries
+namespace Incremental.Common.Sourcing.Abstractions.Queries
 {
     /// <summary>
     /// Bus for sending query requests.

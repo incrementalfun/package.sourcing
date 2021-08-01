@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Incremental.Common.Sourcing.Commands.Contract
+namespace Incremental.Common.Sourcing.Abstractions.Commands
 {
     /// <summary>
     /// Command.

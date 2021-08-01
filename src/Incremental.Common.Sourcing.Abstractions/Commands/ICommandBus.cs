@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Incremental.Common.Sourcing.Commands.Contract
+namespace Incremental.Common.Sourcing.Abstractions.Commands
 {
     /// <summary>
     /// Bus for sending command requests.

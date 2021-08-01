@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
+using Incremental.Common.Sourcing.Abstractions.Commands;
+using Incremental.Common.Sourcing.Abstractions.Events;
+using Incremental.Common.Sourcing.Abstractions.Queries;
 using Incremental.Common.Sourcing.Commands;
-using Incremental.Common.Sourcing.Commands.Contract;
 using Incremental.Common.Sourcing.Events;
-using Incremental.Common.Sourcing.Events.Contract;
 using Incremental.Common.Sourcing.Pipeline;
 using Incremental.Common.Sourcing.Queries;
 using MediatR;
@@ -32,7 +33,7 @@ namespace Incremental.Common.Sourcing
             services.AddTransient<IEventBus, EventBus>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipeline<,>));
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationPipeline<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipeline<,>));
 
             return services;
         }
