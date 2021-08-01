@@ -8,6 +8,8 @@
         <Authors>Lucas Maximiliano Marino</Authors>
         <PackageProjectUrl>https://github.com/incrementalfun/package.sourcing</PackageProjectUrl>
         <RepositoryUrl>https://github.com/incrementalfun/package.sourcing</RepositoryUrl>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>AGPL-3.0</PackageLicenseExpression>
         <Copyright>Copyright © Lucas Maximiliano Marino 2021</Copyright>
     </PropertyGroup>
 
