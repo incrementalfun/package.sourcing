@@ -4,7 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <Title>Incremental.Common.Sourcing</Title>
-        <Description>Common resources for handling commands, queries, events, and more.</Description>
+        <Description>Common implementations for handling commands, queries, events, and more.</Description>
         <Authors>Lucas Maximiliano Marino</Authors>
         <PackageProjectUrl>https://github.com/incrementalfun/package.sourcing</PackageProjectUrl>
         <RepositoryUrl>https://github.com/incrementalfun/package.sourcing</RepositoryUrl>
