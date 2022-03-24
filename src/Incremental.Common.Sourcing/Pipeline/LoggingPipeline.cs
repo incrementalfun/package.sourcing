@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Incremental.Common.Sourcing.Pipeline
 {
-    internal class LoggingPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    internal class LoggingPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<LoggingPipeline<TRequest, TResponse>> _logger;
         private readonly Watcher _watcher;
