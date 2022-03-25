@@ -1,9 +1,8 @@
-namespace Incremental.Common.Sourcing.Abstractions.Events
+namespace Incremental.Common.Sourcing.Abstractions.Events;
+
+/// <summary>
+/// Event.
+/// </summary>
+public interface IEvent
 {
-    /// <summary>
-    /// Event.
-    /// </summary>
-    public interface IEvent
-    {
-    }
 }

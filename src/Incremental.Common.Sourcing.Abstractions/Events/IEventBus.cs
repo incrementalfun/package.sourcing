@@ -1,18 +1,17 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Incremental.Common.Sourcing.Abstractions.Events
+namespace Incremental.Common.Sourcing.Abstractions.Events;
+
+/// <summary>
+/// Bus for publishing events.
+/// </summary>
+public interface IEventBus
 {
     /// <summary>
-    /// Bus for publishing events.
+    /// Publishes an event.
     /// </summary>
-    public interface IEventBus
-    {
-        /// <summary>
-        /// Publishes an event.
-        /// </summary>
-        /// <typeparam name="TEvent"></typeparam>
-        /// <returns></returns>
-        Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent;
-    }
+    /// <typeparam name="TEvent"></typeparam>
+    /// <returns></returns>
+    Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent;
 }

@@ -8,28 +8,27 @@ using Incremental.Common.Sourcing.Queries;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Incremental.Common.Sourcing
+namespace Incremental.Common.Sourcing;
+
+/// <summary>
+/// Registers bus and pipelines.
+/// </summary>
+public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers bus and pipelines.
+    /// Registers all the buses and requests.
     /// </summary>
-    public static class ServiceCollectionExtensions
+    /// <param name="services"></param>
+    /// <param name="assemblies"></param>
+    /// <returns></returns>
+    public static IServiceCollection AddSourcing(this IServiceCollection services, params Assembly[] assemblies)
     {
-        /// <summary>
-        /// Registers all the buses and requests.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="assemblies"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddSourcing(this IServiceCollection services, params Assembly[] assemblies)
-        {
-            services.AddMediatR(assemblies);
+        services.AddMediatR(assemblies);
             
-            services.AddTransient<ICommandBus, CommandBus>();
-            services.AddTransient<IQueryBus, QueryBus>();
-            services.AddTransient<IEventBus, EventBus>();
+        services.AddTransient<ICommandBus, CommandBus>();
+        services.AddTransient<IQueryBus, QueryBus>();
+        services.AddTransient<IEventBus, EventBus>();
 
-            return services;
-        }
+        return services;
     }
 }

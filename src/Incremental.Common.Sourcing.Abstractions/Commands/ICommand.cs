@@ -1,11 +1,10 @@
 using MediatR;
 
-namespace Incremental.Common.Sourcing.Abstractions.Commands
+namespace Incremental.Common.Sourcing.Abstractions.Commands;
+
+/// <summary>
+/// Command.
+/// </summary>
+public interface ICommand : IRequest
 {
-    /// <summary>
-    /// Command.
-    /// </summary>
-    public interface ICommand : IRequest
-    {
-    }
 }
