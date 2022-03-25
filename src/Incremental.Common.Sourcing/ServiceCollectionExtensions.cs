@@ -4,7 +4,6 @@ using Incremental.Common.Sourcing.Abstractions.Events;
 using Incremental.Common.Sourcing.Abstractions.Queries;
 using Incremental.Common.Sourcing.Commands;
 using Incremental.Common.Sourcing.Events;
-using Incremental.Common.Sourcing.Pipeline;
 using Incremental.Common.Sourcing.Queries;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,16 +23,11 @@ namespace Incremental.Common.Sourcing
         /// <returns></returns>
         public static IServiceCollection AddSourcing(this IServiceCollection services, params Assembly[] assemblies)
         {
-            services.AddScoped<Watcher, Watcher>();
-            
             services.AddMediatR(assemblies);
             
             services.AddTransient<ICommandBus, CommandBus>();
             services.AddTransient<IQueryBus, QueryBus>();
             services.AddTransient<IEventBus, EventBus>();
-
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipeline<,>));
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipeline<,>));
 
             return services;
         }
