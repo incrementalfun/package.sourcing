@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
+using Incremental.Common.Sourcing.Abstractions.Commands;
+using Incremental.Common.Sourcing.Abstractions.Queries;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -19,20 +21,21 @@ internal class LoggingPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<
         var stopwatch = Stopwatch.StartNew();
         var requestName = request.GetType().FullName;
 
-        _logger.LogInformation("Request {RequestName} started", requestName);
+        var requestType = request switch
+        {
+            Command => "Command",
+            Query<TResponse> => "Query",
+            _ => "Request"
+        };
+
+        _logger.LogInformation("{RequestType} {RequestName} started", requestType, requestName);
 
         TResponse response;
 
         try
         {
-            try
-            {
-                _logger.LogInformation("{RequestName} has properties {@Properties}", requestName, JsonSerializer.Serialize(request));
-            }
-            catch (NotSupportedException)
-            {
-                _logger.LogWarning("{RequestName} properties could not be serialized", requestName);
-            }
+            _logger.LogInformation("{RequestType} {RequestName} has properties {@Properties}", 
+                requestType, requestName, JsonSerializer.Serialize(request));
 
             response = await next();
         }
@@ -40,15 +43,15 @@ internal class LoggingPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<
         {
             stopwatch.Stop();
                 
-            if (stopwatch.Elapsed.TotalSeconds >= 30)
+            if (stopwatch.Elapsed > TimeSpan.FromSeconds(15))
             {
-                _logger.LogWarning("Request {RequestName} ended in {ExecutionTime}", 
-                    requestName, $"{stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogWarning("{RequestType} {RequestName} ended in {ExecutionTime}", 
+                    requestType, requestName, $"{stopwatch.ElapsedMilliseconds}ms");
             }
             else
             {
-                _logger.LogInformation("Request {RequestName} ended in {ExecutionTime}",
-                    requestName, $"{stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation("{RequestType} {RequestName} ended in {ExecutionTime}",
+                    requestType, requestName, $"{stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

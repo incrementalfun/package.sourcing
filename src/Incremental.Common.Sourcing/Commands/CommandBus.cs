@@ -23,7 +23,7 @@ public class CommandBus : ICommandBus
 
 
     /// <inheritdoc />
-    public Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : ICommand
+    public Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : Command
     {
         return _sender.Send(command, cancellationToken);
     }

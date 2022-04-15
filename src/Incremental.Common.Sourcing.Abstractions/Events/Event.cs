@@ -1,8 +1,8 @@
+using MediatR;
+
 namespace Incremental.Common.Sourcing.Abstractions.Events;
 
 /// <summary>
 /// Event.
 /// </summary>
-public interface IEvent
-{
-}
+public record Event : INotification;

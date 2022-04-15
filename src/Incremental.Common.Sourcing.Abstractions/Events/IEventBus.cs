@@ -13,5 +13,5 @@ public interface IEventBus
     /// </summary>
     /// <typeparam name="TEvent"></typeparam>
     /// <returns></returns>
-    Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent;
+    Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : Event;
 }

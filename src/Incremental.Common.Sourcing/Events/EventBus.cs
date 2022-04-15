@@ -22,11 +22,8 @@ public class EventBus : IEventBus
     }
 
     /// <inheritdoc />
-    public async Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent
+    public async Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : Event
     {
-        if (@event is IInternalEvent)
-        {
-            await _publisher.Publish(@event, cancellationToken);
-        }
+        await _publisher.Publish(@event, cancellationToken);
     }
 }

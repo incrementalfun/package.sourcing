@@ -5,6 +5,4 @@ namespace Incremental.Common.Sourcing.Abstractions.Commands;
 /// <summary>
 /// Command.
 /// </summary>
-public interface ICommand : IRequest
-{
-}
+public record Command : IRequest;

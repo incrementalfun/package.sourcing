@@ -6,6 +6,4 @@ namespace Incremental.Common.Sourcing.Abstractions.Queries;
 /// Query.
 /// </summary>
 /// <typeparam name="TResponse"></typeparam>
-public interface IQuery<out TResponse> : IRequest<TResponse>
-{
-}
+public record Query<TResponse> : IRequest<TResponse>;

@@ -22,7 +22,7 @@ public class QueryBus : IQueryBus
     }
 
     /// <inheritdoc />
-    public Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)
+    public Task<TResponse> Send<TResponse>(Query<TResponse> query, CancellationToken cancellationToken = default)
     {
         return _sender.Send(query, cancellationToken);
     }

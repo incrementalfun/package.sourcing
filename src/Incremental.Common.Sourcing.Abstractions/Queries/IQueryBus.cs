@@ -9,11 +9,11 @@ namespace Incremental.Common.Sourcing.Abstractions.Queries;
 public interface IQueryBus
 {
     /// <summary>
-    /// Sends a query and returns a TResponse.
+    /// Sends a query and returns a response.
     /// </summary>
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TResponse"></typeparam>
     /// <returns></returns>
-    Task<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default);
+    Task<TResponse> Send<TResponse>(Query<TResponse> query, CancellationToken cancellationToken = default);
 }
