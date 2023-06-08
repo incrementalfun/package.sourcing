@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Queries;
 
@@ -9,11 +10,22 @@ namespace Incremental.Common.Sourcing.Abstractions.Queries;
 public interface IQueryBus
 {
     /// <summary>
-    /// Sends a query and returns a response.
+    /// Sends a query and retrieves a response.
     /// </summary>
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TResponse"></typeparam>
     /// <returns></returns>
-    Task<TResponse> Send<TResponse>(Query<TResponse> query, CancellationToken cancellationToken = default);
+    Task<TResponse> Send<TResponse>(Query<TResponse> query, CancellationToken cancellationToken = default)
+        where TResponse : class;
+
+    /// <summary>
+    /// Sends a query and retrieves a response with metadata.
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <typeparam name="TResponse"></typeparam>
+    /// <returns></returns>
+    Task<Response<TResponse>> SendWithMetadata<TResponse>(Query<TResponse> query, CancellationToken cancellationToken = default)
+        where TResponse : class;
 }
