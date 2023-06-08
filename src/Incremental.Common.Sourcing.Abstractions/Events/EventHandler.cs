@@ -1,6 +1,5 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using System.Threading.Tasks;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Events;
 
@@ -8,8 +7,8 @@ namespace Incremental.Common.Sourcing.Abstractions.Events;
 /// Event handler.
 /// </summary>
 /// <typeparam name="TEvent"></typeparam>
-public abstract class EventHandler<TEvent> : INotificationHandler<TEvent> where TEvent : Event
+public abstract class EventHandler<TEvent> : IConsumer<TEvent> where TEvent : Event
 {
     /// <inheritdoc />
-    public abstract Task Handle(TEvent @event, CancellationToken cancellationToken);
+    public abstract Task Consume(ConsumeContext<TEvent> context);
 }
