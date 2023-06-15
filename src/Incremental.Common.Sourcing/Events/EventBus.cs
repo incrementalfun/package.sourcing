@@ -25,6 +25,7 @@ public class EventBus : IEventBus
     /// <inheritdoc />
     public async Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : Event
     {
-        await _provider.Publish(@event, cancellationToken);
+        await _provider.Publish(@event, cancellationToken)
+            .ConfigureAwait(false);
     }
 }
