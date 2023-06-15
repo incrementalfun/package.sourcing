@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Common.Sourcing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Common.Sourcing.Abstractions", "Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj", "{58B2E9CF-B463-4B2C-A601-3650B3B340A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Common.Sourcing.Behaviors", "Incremental.Common.Sourcing.Behaviors\Incremental.Common.Sourcing.Behaviors.csproj", "{64F16443-2C16-4C82-A6F7-D8019CD98869}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{58B2E9CF-B463-4B2C-A601-3650B3B340A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B2E9CF-B463-4B2C-A601-3650B3B340A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B2E9CF-B463-4B2C-A601-3650B3B340A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64F16443-2C16-4C82-A6F7-D8019CD98869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64F16443-2C16-4C82-A6F7-D8019CD98869}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64F16443-2C16-4C82-A6F7-D8019CD98869}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64F16443-2C16-4C82-A6F7-D8019CD98869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
