@@ -2,20 +2,25 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <Nullable>enable</Nullable>
+        <Title>Incremental.Common.Sourcing.Messaging</Title>
+        <Description>Common implementations for messaging between services.</Description>
+        <Authors>Lucas Maximiliano Marino</Authors>
+        <PackageProjectUrl>https://github.com/incrementalfun/package.sourcing</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/incrementalfun/package.sourcing</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+        <Copyright>Copyright © Lucas Maximiliano Marino 2023</Copyright>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj" />
+        <None Include="../../README.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\..\README.md">
-        <Pack>true</Pack>
-        <PackagePath>/</PackagePath>
-        <Link>README.md</Link>
-      </None>
+        <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj"/>
     </ItemGroup>
 
 </Project>
