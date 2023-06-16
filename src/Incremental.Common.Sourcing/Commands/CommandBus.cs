@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Incremental.Common.Sourcing.Abstractions.Commands;
-using MediatR;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Commands;
 
@@ -10,21 +10,21 @@ namespace Incremental.Common.Sourcing.Commands;
 /// </summary>
 public class CommandBus : ICommandBus
 {
-    private readonly ISender _sender;
+    private readonly ISendEndpointProvider _provider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    /// <param name="sender"></param>
-    public CommandBus(ISender sender)
+    /// <param name="provider"></param>
+    public CommandBus(ISendEndpointProvider provider)
     {
-        _sender = sender;
+        _provider = provider;
     }
 
-
     /// <inheritdoc />
-    public Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : Command
+    public async Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : Command
     {
-        return _sender.Send(command, cancellationToken);
+        await _provider.Send(command, cancellationToken)
+            .ConfigureAwait(false);
     }
 }

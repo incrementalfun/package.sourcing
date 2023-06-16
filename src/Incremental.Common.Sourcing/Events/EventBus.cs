@@ -1,7 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Incremental.Common.Sourcing.Abstractions.Events;
-using MediatR;
+using MassTransit;
+using Event = Incremental.Common.Sourcing.Abstractions.Events.Event;
 
 namespace Incremental.Common.Sourcing.Events;
 
@@ -10,20 +11,21 @@ namespace Incremental.Common.Sourcing.Events;
 /// </summary>
 public class EventBus : IEventBus
 {
-    private readonly IPublisher _publisher;
+    private readonly IPublishEndpoint _provider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    /// <param name="publisher"></param>
-    public EventBus(IPublisher publisher)
+    /// <param name="provider"></param>
+    public EventBus(IPublishEndpoint provider)
     {
-        _publisher = publisher;
+        _provider = provider;
     }
 
     /// <inheritdoc />
     public async Task Publish<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : Event
     {
-        await _publisher.Publish(@event, cancellationToken);
+        await _provider.Publish(@event, cancellationToken)
+            .ConfigureAwait(false);
     }
 }

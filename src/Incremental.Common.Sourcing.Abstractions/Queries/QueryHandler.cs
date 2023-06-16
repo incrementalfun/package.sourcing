@@ -1,6 +1,5 @@
-using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Queries;
 
@@ -9,8 +8,8 @@ namespace Incremental.Common.Sourcing.Abstractions.Queries;
 /// </summary>
 /// <typeparam name="TQuery"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
-public abstract class QueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse> where TQuery : Query<TResponse>
+public abstract class QueryHandler<TQuery, TResponse> : IConsumer<TQuery> where TQuery : Query<TResponse>
 {
     /// <inheritdoc />
-    public abstract Task<TResponse> Handle(TQuery query, CancellationToken cancellationToken);
+    public abstract Task Consume(ConsumeContext<TQuery> context);
 }

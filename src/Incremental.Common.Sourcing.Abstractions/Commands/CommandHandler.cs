@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Commands;
 
@@ -8,8 +8,8 @@ namespace Incremental.Common.Sourcing.Abstractions.Commands;
 /// Command Handler.
 /// </summary>
 /// <typeparam name="TCommand"></typeparam>
-public abstract class CommandHandler<TCommand> : IRequestHandler<TCommand> where TCommand : Command
+public abstract class CommandHandler<TCommand> : IConsumer<TCommand> where TCommand : Command
 {
     /// <inheritdoc />
-    public abstract Task<Unit> Handle(TCommand command, CancellationToken cancellationToken);
+    public abstract Task Consume(ConsumeContext<TCommand> context);
 }
