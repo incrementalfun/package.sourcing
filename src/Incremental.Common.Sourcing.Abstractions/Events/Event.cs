@@ -1,5 +1,4 @@
 using System;
-using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Events;
 
@@ -11,5 +10,5 @@ public abstract record Event
     /// <summary>
     /// Id of the event.
     /// </summary>
-    public required Guid Id { get; init; }
+    public required Guid Id { get; init; } = Guid.NewGuid();
 }
