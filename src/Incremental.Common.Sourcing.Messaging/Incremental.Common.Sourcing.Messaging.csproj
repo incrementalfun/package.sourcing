@@ -16,11 +16,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="/"/>
+        <None Include="../../README.md" Pack="true" PackagePath="/" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj"/>
+        <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\6.0.0\lib\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
