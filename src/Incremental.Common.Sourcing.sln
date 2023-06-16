@@ -6,6 +6,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Common.Sourcing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Common.Sourcing.Messaging", "Incremental.Common.Sourcing.Messaging\Incremental.Common.Sourcing.Messaging.csproj", "{99F189B8-53F0-4D29-99B0-4CA86A28970E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-files", ".solution-files", "{2C9C16A4-2627-40D6-830D-F5AE5A847059}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\incremental.common.sourcing.abstractions.yml = ..\.github\workflows\incremental.common.sourcing.abstractions.yml
+		..\.github\workflows\incremental.common.sourcing.yml = ..\.github\workflows\incremental.common.sourcing.yml
+		..\.github\workflows\incremental.common.sourcing.messaging.yml = ..\.github\workflows\incremental.common.sourcing.messaging.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

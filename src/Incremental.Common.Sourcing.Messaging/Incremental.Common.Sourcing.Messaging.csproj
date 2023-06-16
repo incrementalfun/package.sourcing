@@ -10,4 +10,12 @@
       <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="..\..\README.md">
+        <Pack>true</Pack>
+        <PackagePath>/</PackagePath>
+        <Link>README.md</Link>
+      </None>
+    </ItemGroup>
+
 </Project>
