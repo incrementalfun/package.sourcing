@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Incremental.Common.Sourcing.Abstractions\Incremental.Common.Sourcing.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,11 +1,12 @@
 using System;
+using MassTransit;
 
 namespace Incremental.Common.Sourcing.Abstractions.Events;
 
 /// <summary>
 /// Event.
 /// </summary>
-public record Event
+public abstract record Event
 {
     /// <summary>
     /// Id of the event.
