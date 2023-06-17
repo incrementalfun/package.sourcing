@@ -85,7 +85,7 @@ public static class SourcingOptionsExtensions
     /// <param name="busConfiguration"><see cref="IBusRegistrationConfigurator"/></param>
     public static void ConfigureEndpointFormatter(this SourcingOptions options, Action<IBusRegistrationConfigurator> busConfiguration)
     {
-        options.TryRegisterOption(MassTransitConfiguration, busConfiguration);
+        options.TryRegisterOption(EndpointNameFormatter, busConfiguration);
     }
     
     /// <summary>
@@ -95,7 +95,7 @@ public static class SourcingOptionsExtensions
     /// <returns></returns>
     public static Action<IBusRegistrationConfigurator>? GetEndpointFormatter(this SourcingOptions options)
     {
-        return options.RetrieveOption<Action<IBusRegistrationConfigurator>>(MassTransitConfiguration);
+        return options.RetrieveOption<Action<IBusRegistrationConfigurator>>(EndpointNameFormatter);
     }
     
     #endregion
