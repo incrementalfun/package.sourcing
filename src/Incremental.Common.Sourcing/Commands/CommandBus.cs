@@ -10,13 +10,13 @@ namespace Incremental.Common.Sourcing.Commands;
 /// </summary>
 public class CommandBus : ICommandBus
 {
-    private readonly ISendEndpointProvider _provider;
+    private readonly IPublishEndpoint _provider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     /// <param name="provider"></param>
-    public CommandBus(ISendEndpointProvider provider)
+    public CommandBus(IPublishEndpoint provider)
     {
         _provider = provider;
     }
@@ -24,7 +24,7 @@ public class CommandBus : ICommandBus
     /// <inheritdoc />
     public async Task Send<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : Command
     {
-        await _provider.Send(command, cancellationToken)
+        await _provider.Publish(command, cancellationToken)
             .ConfigureAwait(false);
     }
 }
